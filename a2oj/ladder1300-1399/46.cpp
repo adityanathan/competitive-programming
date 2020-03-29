@@ -3,12 +3,11 @@ using namespace std;
 
 #define forn(i,n) for(int i=0;i<n;i++)
 
-int next(int num){
+long long next(int num){
 	string s=to_string(num);
 	int i=0,n=s.length();
-	while(s[i]=='7'||s[i]=='4'){
+	while(s[i]=='7'||s[i]=='4')
 		i++;
-	}
 	if(i>=n)
 		return num;
 
@@ -27,13 +26,13 @@ int next(int num){
 			i--;
 		if(i==0){
 			string t(n+1,'4');
-			return stoi(t);
+			return stoll(t);
 		}
 		s[i-1]='7';
 		while(i<n)
 			s[i++]='4';
 	}
-	return stoi(s);
+	return stoll(s);
 }
 
 int main(){
