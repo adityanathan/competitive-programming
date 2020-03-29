@@ -3,20 +3,48 @@ using namespace std;
 
 #define forn(i,n) for(int i=0;i<n;i++)
 
+int next(int num){
+	string s=to_string(num);
+	int i=0,n=s.length();
+	while(s[i]=='7'||s[i]=='4'){
+		i++;
+	}
+	if(i>=n)
+		return num;
+
+	if(s[i]<'4')
+		while(i<n)
+			s[i++]='4';
+
+	else if(s[i]<'7'){
+		s[i++]='7';
+		while(i<n)
+			s[i++]='4';
+	}
+
+	else{
+		while(i>0 && s[i-1]=='7')
+			i--;
+		if(i==0){
+			string t(n+1,'4');
+			return stoi(t);
+		}
+		s[i-1]='7';
+		while(i<n)
+			s[i++]='4';
+	}
+	return stoi(s);
+}
+
 int main(){
 	int l,r;
-	cin>>l>>r;
-	if(x1!=x2 && y1!=y2 && abs(x1-x2)==abs(y1-y2)){
-		cout<<x2<<" "<<y1<<" "<<x1<<" "<<y2;
-		return 0;
-	}
-	if(x1==x2){
-		cout<<x1+abs(y1-y2)<<" "<<y1<<" "<<x2+abs(y1-y2)<<" "<<y2;
-		return 0;
-	}
-	if(y1==y2){cout<<x1<<" "<<y1+abs(x1-x2)<<" "<<x2<<" "<<y2+abs(x1-x2);
-		return 0;
-	}
-	cout<<"-1";
+		cin>>l>>r;
+		long long sum=0;
+		while(next(l)<r){
+			sum+=(next(l)-l+1)*next(l);
+			l=next(l)+1;
+		}
+		sum+=(r-l+1)*next(l);
+		cout<<sum<<"\n";
 	return 0;
 } 
