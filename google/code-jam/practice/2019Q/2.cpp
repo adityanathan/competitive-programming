@@ -4,27 +4,36 @@ using namespace std;
 typedef pair<int, int> pi;
 
 int main(){
-	int t,n,b,cnt=0,tot,test;
+	int t,n,test,cnt;
+	string s;
 	cin>>test;
 	t=test;
 	while(t--){
-		cin>>n>>b;
-		cnt=0;
-		tot=0;
-		vector<int> a(n);
-		forn(i,n){
-			cin>>a[i];
-		}
-		sort(a.begin(),a.end());
-		forn(i,n){
-			tot+=a[i];
-			
-			if(tot>b){
-				break;
+		cin>>n>>s;
+		if(s[0]=='E' && s[2*n-3]=='S')
+			cout<<"Case #"<<test-t<<": "<<string(n-1,'S')+string(n-1,'E')<<"\n";
+		else if(s[0]=='S' && s[2*n-3]=='E')
+			cout<<"Case #"<<test-t<<": "<<string(n-1,'E')+string(n-1,'S')<<"\n";
+		else if(s[0]=='E' && s[2*n-3]=='E'){
+			cnt=0;
+			forn(i,n){
+				if(s[i]=='S')
+					cnt++;
+				if(s[i]=='S' && s[i+1]=='S')
+					break;
 			}
-			cnt+=1;
+			cout<<"Case #"<<test-t<<": "<<string(cnt,'S')+string(n-1,'E')+string(n-1-cnt,'S')<<"\n";
 		}
-		cout<<"Case #"<<test-t<<": "<<cnt<<"\n";
+		else{
+			cnt=0;
+			forn(i,n){
+				if(s[i]=='E')
+					cnt++;
+				if(s[i]=='E' && s[i+1]=='E')
+					break;
+			}
+			cout<<"Case #"<<test-t<<": "<<string(cnt,'E')+string(n-1,'S')+string(n-1-cnt,'E')<<"\n";
+		}
 	    
 	}
 	return 0;
