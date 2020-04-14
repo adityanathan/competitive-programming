@@ -1,36 +1,37 @@
 cd /Users/harkiratdhanoa/Desktop/iitd/competitive/codeforces
-if [ $# -eq 0 ]; 
+
+if [ $# -ne 0 ]; 
 then
-	open .
-	echo "No arguments provided"
-else
 	mkdir $1
 	cd $1
 
 
-	echo "#include<bits/stdc++.h>
-	using namespace std;
-	#define forn(i, n) for(int i = 0; i < n; ++i)
-	#define forit(it, m) for(auto it = m.begin(); it!=m.end(); ++it)
+	echo "#pragma GCC optimize ("Ofast")
+#include<bits/stdc++.h>
+#include<unordered_map>
+using namespace std;
+#define forn(i, n) for(int i = 0; i < n; ++i)
+#define forit(it, m) for(auto it = m.begin(); it!=m.end(); ++it)
 
-	int main(){
-		ios_base::sync_with_stdio(false); 
-	    	cin.tie(NULL);   
-		int n,t;
-		cin>>t;
-	
-		while(t--){
-			cin>>n;
-			
-			cout<<n<<"\n";
-		}
-		return 0;
+int main(){
+	ios_base::sync_with_stdio(false); 
+    cin.tie(NULL);   
+	int n,t;
+	cin>>t;
+
+	while(t--){
+		cin>>n;
+		
+		cout<<n<<endl;
 	}
-	" | tee -a a.cpp b.cpp c.cpp d.cpp
+	return 0;
+}
 
-	open .
+" | tee -a a.cpp b.cpp c.cpp d.cpp > /dev/null
 
 	# subl a.cpp
 
-	clear
 fi
+
+clear
+open .
