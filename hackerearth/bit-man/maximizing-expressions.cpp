@@ -5,6 +5,7 @@ using namespace std;
 int main(){
 	int n,temp;
 	long long sum=0;
+	
 	cin>>n;
 	vector<int> x(n);
 
