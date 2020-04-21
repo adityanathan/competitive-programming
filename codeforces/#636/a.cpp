@@ -14,7 +14,7 @@ int main(){
 	while(t--){
 		cin>>n;
 		x=3;
-		while(n%(x)!=0){
+		while(n%x!=0){
 			x<<=1;
 			x++;
 		}

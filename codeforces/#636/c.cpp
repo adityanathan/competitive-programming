@@ -19,21 +19,15 @@ int main(){
 			cin>>a[i];
 		sum=0;
 		elem=a[0];
-		int i=1;
-		while(i<n){
-			if(a[i]>0 == elem>0)
-				elem=max(elem,a[i]);
+		forn(i,n-1){
+			if(a[i+1]>0 == elem>0)
+				elem=max(elem,a[i+1]);
 			else{
 				sum+=elem;
-				elem=a[i];
+				elem=a[i+1];
 			}
-			i++;
 		}
-		sum+=elem;
-
-
-		cout<<sum<<endl;
-			
+		cout<<sum+elem<<endl;
 	}
 	return 0;
 }

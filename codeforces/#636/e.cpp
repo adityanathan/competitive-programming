@@ -15,8 +15,8 @@ void BFS(vector<int> adj[],int src,int dest,int v,int pred[],int dist[]){
         visited[i] = false; 
         dist[i] = INT_MAX; 
         pred[i] = -1; 
-    } 
-    
+    }
+
     visited[src] = true; 
     dist[src] = 0; 
     queue.push_back(src); 

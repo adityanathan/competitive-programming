@@ -14,23 +14,22 @@ int main(){
 	while(t--){
 		cin>>n>>k;
 		vector<int> a(n),b(2*k+2,0);
+
 		forn(i,n)
 			cin>>a[i];
+
 		forn(i,n/2){
 			b[1+min(a[i],a[n-i-1])]++;
 			b[k+max(a[i],a[n-i-1])+1]--;
 		}
 
-		for(int i=1;i<2*k+1;i++){
-			b[i]+=b[i-1];
-		}
+		forn(i,2*k)			//integration
+			b[i+1]+=b[i];
+
 		forn(i,n/2)
 			b[a[i]+a[n-i-1]]++;
-		int x=0;
-		for(int i=1;i<2*k+1;i++){
-			x=max(x,b[i]);
-		}
-		cout<<n-x<<endl;
+
+		cout<<n-*max_element(b.begin(),b.end())<<endl;
 	}
 	return 0;
 }
