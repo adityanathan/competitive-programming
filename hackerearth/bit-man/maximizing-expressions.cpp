@@ -1,28 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define forn(i, n) for(int i = 0; i < n; ++i)
 
 int main(){
 	ios::sync_with_stdio(false);
-  	cin.tie(0);
-  	
-	int n,temp;
-	long long sum=0;
+	cin.tie(0);
+
+	int i,n,temp;
+	long long sum = 0;
 	
 	cin>>n;
 	vector<int> x(n);
 
-	forn(i,n)
+	for(i=0;i<n;++i)
 		cin>>x[i];
 
-	forn(i,n){
+	for(i=0;i<n;++i){
 		cin>>temp;
 		x[i]^=temp;
 	}
 
-	forn(i,n){
+	for(i=0;i<n;++i){
 		cin>>temp;
-		sum+=x[i]^temp&~x[i];
+		sum+=x[i]^temp&(temp&~x[i]?~x[i]:-temp);
 	}
 
 	cout<<sum;
