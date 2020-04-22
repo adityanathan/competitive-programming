@@ -1,54 +1,59 @@
-#include <bits/stdc++.h> 
+#pragma GCC optimize (Ofast)
+#include <bits/stdc++.h>
 using namespace std; 
 #define forn(i, n) for(int i = 0; i < n; ++i)
 
-void add_edge(vector<int> adj[], int src, int dest) { 
-	adj[src].push_back(dest); 
-	adj[dest].push_back(src); 
-} 
-
-void BFS(vector<int> adj[],int src,int dest,int v,int pred[],int dist[]){
- 	list<int> queue; 
-  	bool visited[v]; 
-  
-    forn(i,v){ 
-        visited[i] = false; 
-        dist[i] = INT_MAX; 
-        pred[i] = -1; 
-    }
+vector<int> BFS(vector<int> adj[],int src,int dest,int v){
+ 	queue<int> Q; 
+  	vector<bool> visited(v,false); 
+  	vector<int> pred(v,-1);
 
     visited[src] = true; 
-    dist[src] = 0; 
-    queue.push_back(src); 
+    Q.push(src); 
+
+    int u;
   
-    while(!queue.empty()){ 
-        int u = queue.front(); 
-        queue.pop_front(); 
+    while(!Q.empty()){ 
+        u = Q.front(); 
+        Q.pop(); 
         sort(adj[u].begin(),adj[u].end());
         forn(i,adj[u].size())
             if(visited[adj[u][i]] == false){ 
-                visited[adj[u][i]] = true; 
-                dist[adj[u][i]] = dist[u] + 1; 
+                visited[adj[u][i]] = true;
                 pred[adj[u][i]] = u; 
-                queue.push_back(adj[u][i]); 
+                Q.push(adj[u][i]); 
   
-                if(adj[u][i] == dest) 
-                   return; 
+                if(adj[u][i] == dest) {
+
+                	return pred; 
+                }
             }
     }
+    return pred;
+} 
+
+int shortestPathL(vector<int> adj[], int s, int dest, int v) { 
+	int path = 1, reach = dest; 
+	vector<int> pred;
+
+	pred=BFS(adj, s, dest, v);
+
+	while (pred[reach] != -1) { 
+		path++; 
+		reach = pred[reach]; 
+	}
+	return path;
 } 
 
 vector<int> shortestPath(vector<int> adj[], int s, int dest, int v) { 
-	int pred[v], dist[v];  
-	BFS(adj, s, dest, v, pred, dist);
+	int reach = dest; 
+	vector<int> pred,path(1,s);
 
-	vector<int> path; 
-	int crawl = dest; 
-	path.push_back(crawl); 
+	pred=BFS(adj, s, dest, v);
 
-	while (pred[crawl] != -1) { 
-		path.push_back(pred[crawl]); 
-		crawl = pred[crawl]; 
+	while (pred[reach] != -1) { 
+		path.push_back(reach); 
+		reach = pred[reach]; 
 	}
 	return path;
 } 
@@ -56,39 +61,50 @@ vector<int> shortestPath(vector<int> adj[], int s, int dest, int v) {
 int main(){
 	ios::sync_with_stdio(false);
   	cin.tie(0); 
-	int n,m,a,b,c,start,end,count,t;
-	long long sum;
-	vector<int> path1,path2;
+	int t,n,m,a,b,c,start,end,p1,p2,p3;
+	vector<int> path;
+	long long ans;
 	cin>>t;
 
 	while(t--){
 		cin>>n>>m>>a>>b>>c;
-		vector<int> p(m);
+
+		vector<long long> p(m),psum(m+1,0);
+		vector<bool> visited(n,false);
 		forn(i,m)
 			cin>>p[i];
-		sum=count=0;
+		sort(p.begin(),p.end());
+		forn(i,m)
+			psum[i+1]=p[i]+psum[i];
+
 		vector<int> adj[n];
 		forn(i,m){
 			cin>>start>>end;
-			add_edge(adj, start-1, end-1); 
+			adj[start-1].push_back(end-1); 
+			adj[end-1].push_back(start-1); 
 		}
-		path1=shortestPath(adj, a-1, b-1, n);
-		path2=shortestPath(adj, b-1, c-1, n);
-		map<pair<int,int>,bool> m;
-		forn(i,path1.size()-1){
-			m[make_pair(path1[i],path1[i+1])]=true;
-			m[make_pair(path1[i+1],path1[i])]=true;
+
+		ans=LLONG_MAX;
+		path=shortestPath(adj, a-1, b-1, n);
+		for(int i:path){
+			visited[i]=true;
+			p1=shortestPathL(adj, i, a-1, n);
+			p2=shortestPathL(adj, i, b-1, n);
+			p3=shortestPathL(adj, i, c-1, n);
+			if(p1+p2+p3-3<=m)
+				ans=min(ans,psum[p2-1]+psum[p1+p2+p3-3]);
 		}
-		forn(i,path2.size()-1)
-			if(m.find(make_pair(path2[i],path2[i+1]))!=m.end())
-				count++;
-		sort(p.begin(),p.end());
-		forn(i,path1.size()+path2.size()-2-count){
-			if(i<count)
-				sum+=p[i];
-			sum+=p[i];
+		path=shortestPath(adj, b-1, c-1, n);
+		for(int i:path){
+			if(visited[i])
+				continue;
+			p1=shortestPathL(adj, i, a-1, n);
+			p2=shortestPathL(adj, i, b-1, n);
+			p3=shortestPathL(adj, i, c-1, n);
+			if(p1+p2+p3-3<=m)
+				ans=min(ans,psum[p2-1]+psum[p1+p2+p3-3]);
 		}
-		cout<<sum<<endl;
+		cout<<ans<<endl;
 	}
 	return 0;
 }
