@@ -195,26 +195,26 @@ int main(){
 			i++;
 		}
 
-		// if(b1){
-		// 	i=0;j=0;
-		// 	while(i<max(xbin1.length(),ybin1.length())){
-		// 		if(i<xbin1.length() && xbin1[xbin1.length()-1-i]=='1'){
-		// 			if(i==ybin1.length()-1)
-		// 				cout<< (x>0?"E":"W");
-		// 			else cout<< (x>0?"W":"E");
-		// 			i++;
-		// 		}
-		// 		else if(i<ybin1.length()){
-		// 			if(i==ybin1.length()-1)
-		// 				cout<< (y>0?"N":"S");
-		// 			else cout<<(y>0?"S":"N");
+		if(b1){
+			i=0;j=0;
+			while(i<max(xbin1.length(),ybin1.length())){
+				if(i<xbin1.length() && xbin1[xbin1.length()-1-i]=='1'){
+					if(i==ybin1.length()-1)
+						cout<< (x>0?"E":"W");
+					else cout<< (x>0?"W":"E");
+					i++;
+				}
+				else if(i<ybin1.length()){
+					if(i==ybin1.length()-1)
+						cout<< (y>0?"N":"S");
+					else cout<<(y>0?"S":"N");
 
-		// 			i++;
-		// 		}
-		// 	}
-		// 	cout<<"\n";
-		// 	continue;
-		// }
+					i++;
+				}
+			}
+			cout<<"\n";
+			continue;
+		}
 
 
 		cout<<"IMPOSSIBLE"<<"\n";
