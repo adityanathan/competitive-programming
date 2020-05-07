@@ -42,15 +42,13 @@ int main(){
 		l=-1,r=1001,white=-1;
 		forn(j,m){
 			if(s[i][j]=='#'){
+				col[j]=true; row[i]=true;
 				if(l==-1)
 					l=j;
 				r=j;
 			}
-			else{
-				col[j]=true; row[i]=true;
-				if(l!=-1 && white==-1)
-					white = j;
-			}
+			else if(l!=-1 && white==-1)
+				white = j;
 		}
 		if(white!=-1 && white<r)
 			f=false;
