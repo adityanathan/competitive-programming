@@ -18,9 +18,9 @@ int main(){
 		f=true;
 		forn(i,n){
 			cin>>nex;
-			if(m.find((i+nex)%n)!=m.end())
+			if(m.find((n+(i+nex)%n)%n)!=m.end())
 				f=false;
-			m[(i+nex)%n]=true;
+			m[(n+(i+nex)%n)%n]=true;
 		}
 		
 		cout<< (f?"YES\n":"NO\n");
