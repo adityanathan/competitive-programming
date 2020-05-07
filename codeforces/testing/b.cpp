@@ -8,13 +8,19 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
   	cin.tie(0); 
-	int n,t;
+	int a,b,t,aa,c,d;
 	cin>>t;
 
 	while(t--){
-		cin>>n;
+		cin>>a>>b>>c>>d;
+		aa=min(a,b);
+		b=max(a,b);
+		a=aa;
+		aa=min(c,d);
+		d=max(c,d);
+		c=aa;
 		
-		cout<<n<<endl;
+		cout<<(a+c==b && b==d?"Yes":"No")<<endl;
 	}
 	return 0;
 }
