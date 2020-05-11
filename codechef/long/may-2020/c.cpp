@@ -7,7 +7,7 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
   	cin.tie(0); 
-	int n,i,t,k;
+	int n,i,j,t,k;
 	bool f;
 	cin>>t;
 
@@ -25,14 +25,31 @@ int main(){
 			for(i=0;i<n;i++){
 				if(a[i]==i)
 					continue;
-				if(a[a[i]]==i)
-					break;
+				if(a[a[i]]==i){
+					for(j=i+1;j<n;j++)
+						if(a[j]!=j && a[j]!=i && a[j]!=a[i])
+							break;
+					if(j==n){
+						k=0;
+						break;
+					}
+					ans.push_back(to_string(i+1)+" "+to_string(j+1)+" "+to_string(m[i]+1));
+					k--;
+					a[m[i]]=a[j];
+					m[a[j]]=m[i];
+					m[i]=i;
+					m[a[i]]=a[i];
+					a[j]=a[i];
+					a[i]=i;
+					continue;
+				}
 				ans.push_back(to_string(i+1)+" "+to_string(a[i]+1)+" "+to_string(m[i]+1));
 				k--;
+				
+				a[m[i]]=a[a[i]];
 				m[a[a[i]]]=m[i];
 				m[i]=i;
 				m[a[i]]=a[i];
-				a[m[i]]=a[a[i]];
 				a[a[i]]=a[i];
 				a[i]=i;
 			}

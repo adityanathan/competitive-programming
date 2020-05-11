@@ -8,15 +8,15 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
   	cin.tie(0); 
-	int n,t;
+	long long x,y,l,r,t;
 	cin>>t;
 
 	while(t--){
-		cin>>n;
-		
-		cout<<n<<endl;
+		cin>>x>>y>>l>>r;
+		if(x==0||y==0)
+			cout<<l<<endl;
+		else
+			cout<<(x|y)<<endl;
 	}
 	return 0;
 }
-
-
