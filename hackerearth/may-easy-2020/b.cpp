@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 	ios::sync_with_stdio(false);
-  	cin.tie(0); 
+  	cin.tie(0);
 	int cube=0,n,count=0;
 	long long a,cb,sq;
 	map<long long,int> m,mb;
@@ -16,32 +16,25 @@ int main(){
 
 	forn(i,n){
 		cin>>a;
-		cb = (long long) cbrt(a);
+		cb=(long long) cbrt(a);
 		sq=(long long) sqrt(a);
-		// cout<<"root is "<<cb<<"\n";
-		if(cb*cb*cb==a){
-			// cout<<cbrt(a)<<"cb";
+		if(cb*cb*cb==a)
 			cube=1;
-		}
-
-		else if(sq*sq==a){
-			
-			// cout<<sq<<"sq";
+		else if(sq*sq==a)
 			m[sq]++;
-		}
 		else mb[a]++;
 	}
-	forit(it,mb){
+	forit(it,mb)
 		if(m.find(it->first)==m.end())
 			count+=it->second;
 		else
 			count+=max(it->second,m[it->first]);
-		// cout<<it->first<<" "<<count<<"   x   ";
-	}
+
+	forit(it,m)
+		if(mb.find(it->first)==mb.end())
+			count+=it->second;
 
 	cout<<count+cube<<endl;
 	
 	return 0;
 }
-
-
