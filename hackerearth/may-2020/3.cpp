@@ -58,8 +58,11 @@ all3 f(int i,int j){
 }
 
 long long ans(int i,int j){
-	if(i==n-1 && j==m-1)
-		return howMany(a[i][j]);
+	if(i==n-1 && j==m-1){
+		if(memo[i][j].c107>1 && memo[i][j].c1361>1 && memo[i][j].c10000019)
+			return 0;
+		return 1;
+	}
 	if(i==n-1){
 		all3 l = f(i,j+1), now = howMany(a[i][j]);
 		now.c107+=(l.c107>1)?2:l.c107;
