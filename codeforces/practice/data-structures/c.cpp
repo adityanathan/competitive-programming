@@ -16,26 +16,25 @@ int main(){
     int n,a,x,her=0;
     {
         cin>>n>>a;
-        map<int,int> m;
+        unordered_map<int,int> m,m2;
         forn(i,0,n){
         	cin>>x;
         	if(x==a)
         		her++;
-        	else
+        	else if(her==0)
         		m[x]++;
-        	forit(it,m){
-        		if(it->second<her){
-        			int s=it->first;
-        			if(it!=m.begin()){
-        				it--;
-        			}
-        			m.erase(s);
-        			if(m.size()==0)
-        				break;
-        		}
+        	else if(m.find(x)!=m.end())
+        		m[x]++;
+        	if(x==a){
+	        	forit(it,m)
+	        		if(it->second>=her)
+	        			m2.insert(*it);
+        		m = m2;
         	}
+        	m2.clear();
         	if(m.size()==0)
         		break;
+        	debug(m);
         }
 
         cout<<(m.size()==0?-1:m.begin()->first)<<'\n';
