@@ -21,43 +21,46 @@ int main(){
     vector<vector<int>> adj(n+1),topics(n+1);
     vector<set<int>> s(n+1);
     while(m--){
-    	cin>>x>>y;
-    	adj[x].push_back(y);
-    	adj[y].push_back(x);
+        cin>>x>>y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
     }
 
     forn(i,1,n+1){
-    	cin>>t[i];
-    	topics[t[i]].push_back(i);
+        cin>>t[i];
+        topics[t[i]].push_back(i);
     }
 
     forn(i,1,n+1){
 
-    	for(auto x: adj[i]){
-    		if(t[x]==t[i])
-    			b=false;
-    		s[i].insert(t[x]);
-    	}
+        for(auto x: adj[i]){
+            if(t[x]==t[i])
+                b=false;
+            s[i].insert(t[x]);
+        }
 
-    	int j=1;
+        int j=1;
 
-    	for(auto x: s[i])
-    		if(j>=t[i])
-    			break;
-    		else if(x!=j++)
-    			b=false;
+        if(s[i].size()<t[i]-1)
+            b=false;
 
-    	if(!b)
-    		break;
+        for(auto x: s[i])
+            if(j>=t[i])
+                break;
+            else if(x!=j++)
+                b=false;
+
+        if(!b)
+            break;
     }
     if(!b){
-    	cout<<"-1\n";
-    	return 0;
+        cout<<"-1\n";
+        return 0;
     }
     forn(i,1,n+1){
-    	vector<int> curr = topics[i];
-    	for(auto x:curr)
-    		cout<<x<<" ";
+        vector<int> curr = topics[i];
+        for(auto x:curr)
+            cout<<x<<" ";
     }
 
     return 0;
