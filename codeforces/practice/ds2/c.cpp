@@ -10,6 +10,17 @@ using namespace std;
 #define forit(it, m) for(auto it = m.begin(); it!=m.end(); ++it)
 typedef long long ll;
 
+string smallest(string s){
+    if(s.length()%2) 
+    	return s;
+    int n = s.length();
+    string s1 = smallest(s.substr(0,n/2)),
+    	   s2 = smallest(s.substr(n/2,n/2));
+    if(s1 < s2) 
+    	return s1 + s2;
+    return s2 + s1;
+}
+
 bool equ(string a,string b){
 	if(a==b)
 		return true;
@@ -46,6 +57,6 @@ int main(){
     cin.tie(0);
     string a,b;
     cin>>a>>b;
-    cout<<(equ(a,b)?"YES":"NO");
+    cout<<(smallest(a)==smallest(b)?"YES":"NO");
     return 0;
 }
