@@ -10,27 +10,31 @@ using namespace std;
 #define forit(it, m) for(auto it = m.begin(); it!=m.end(); ++it)
 typedef long long ll;
 
+int x;
+vector<vector<int>> a(15,vector<int> (15));
+
+void search(int l, int r, int u, int d) { 
+    // cout<<1<<' '<<u<<' '<<l<<' '<<d<<' '<<r<<'\n';
+    // cin>>x;
+    if(l==r && u==d)
+        a[u][l]=1;
+    if((l<r||u<d) && x) { 
+        int lr = l+(r-l)/2, ud = u+(d-u)/2;
+  
+        search(l,lr,u,ud); 
+        search(lr+1,r,u,ud); 
+        search(l,lr,ud+1,d); 
+        search(lr+1,r,ud+1,d); 
+    }
+} 
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n,a;
-    {
-        cin>>n;
-        map<int,int> m,mm,x;
-        forn(i,0,n){
-        	cin>>a;
-        	m[a]=i+1;
-        }
-        forn(i,0,n){
-        	cin>>a;
-        	mm[a]=i+1;
-        }
-        forn(i,1,n+1){
-        	x[(n+m[i]-mm[i])%n]++;
-        }
-        int ans=0;
-        forit(it,x)
-        	ans=max(ans,it->second);
+    int t,n=15,a;
+    while(t--){
+        a.clear();
+        search()
         cout<<ans<<'\n';
     }
     return 0;
