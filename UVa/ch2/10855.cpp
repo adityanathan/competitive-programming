@@ -24,18 +24,18 @@ int main(){
 
         a1=a2=a3=a4=0;
 
-        forn(i,0,n)
-            forn(j,0,n){
+        forn(i,0,n-m+1)
+            forn(j,0,n-m+1){
                 bool b1 = true, b2 = true, b3 = true, b4 = true;
                 forn(k,0,m)
                     forn(l,0,m){
                         if(big[i+k][j+l]!=small[k][l])
                             b1 = false;
-                        if(big[i+k][j+l]!=small[m-1-k][l])
+                        if(big[i+k][j+l]!=small[m-1-l][k])
                             b2 = false;
-                        if(big[i+k][j+l]!=small[k][l])
+                        if(big[i+k][j+l]!=small[m-1-k][m-1-l])
                             b3 = false;
-                        if(big[i+k][j+l]!=small[k][l])
+                        if(big[i+k][j+l]!=small[l][m-1-k])
                             b4 = false;
                     }
                 a1+=b1;
@@ -44,8 +44,7 @@ int main(){
                 a4+=b4;
             }
 
-
-        cout<<10ll<<100LL<<a1<<" "<<a2<<" "<<a3<<" "<<a4<<"\n";
+        cout<<a1<<" "<<a2<<" "<<a3<<" "<<a4<<"\n";
     }
     return 0;
 }
