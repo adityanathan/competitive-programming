@@ -18,7 +18,7 @@ int main(){
 
     while(t--){
         cin>>n;
-        cout<<n<<'\n';
+        cout<<n-1<<" "<<1<<'\n';
     }
     return 0;
 }

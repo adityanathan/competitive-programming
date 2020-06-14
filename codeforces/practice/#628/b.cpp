@@ -13,12 +13,17 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n,t;
+    int n,t,x;
     cin>>t;
 
     while(t--){
         cin>>n;
-        cout<<n<<'\n';
+        set<int> m;
+        forn(i,0,n){
+        	cin>>x;
+        	m.insert(x);
+        }
+        cout<<m.size()<<'\n';
     }
     return 0;
 }
