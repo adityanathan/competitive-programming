@@ -13,20 +13,12 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n,m,t,x;
+    ll t,ts;
     cin>>t;
 
     while(t--){
-        cin>>n>>m;
-        unordered_set<int> r,c;
-        forn(i,0,n)
-        	forn(j,0,m){
-        		cin>>x;
-        		if(x)
-                    r.insert(i),c.insert(j);
-        	}
-
-        cout<<(min(n-r.size(),m-c.size())%2?"Ashish":"Vivek")<<'\n';
+        cin>>ts;
+        cout<<ts/((ts&-ts)<<1)<<'\n';
     }
     return 0;
 }
