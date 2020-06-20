@@ -22,9 +22,9 @@ int main(){
         forn(i,0,2*n){
         	cin>>aa;
         	if(aa%2)
-        		odd.push_back(aa);
+        		odd.push_back(i+1);
         	else
-        		ev.push_back(aa);
+        		ev.push_back(i+1);
         }
         if(odd.size()%2)
         	odd.pop_back(),ev.pop_back();
