@@ -13,22 +13,15 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t,n,aa,left,ans;
-    cin>>t;
-
-    while(t--){
-        cin>>n;
-        left=ans=0;
-        map<int,int> m;
-        for(int i=0;i<n;++i){
-            cin>>aa;
-            if(m[aa]>left)
-                left=m[aa];
-            if(i+1-left>ans)
-                ans=i+1-left;
-            m[aa]=i+1;
+    int n,aa,q;
+    while(cin>>n>>q){
+        map<int,vector<int>> m;
+        forn(i,0,n)
+        	cin>>aa,m[aa].push_back(i);
+        while(q--){
+        	cin>>n>>aa;
+        	cout<<(m[aa].size()<n?0:1+m[aa][n-1])<<'\n';
         }
-        cout<<ans<<'\n';
     }
     return 0;
 }

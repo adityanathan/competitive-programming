@@ -13,22 +13,21 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t,n,aa,left,ans;
-    cin>>t;
-
-    while(t--){
-        cin>>n;
-        left=ans=0;
-        map<int,int> m;
-        for(int i=0;i<n;++i){
-            cin>>aa;
-            if(m[aa]>left)
-                left=m[aa];
-            if(i+1-left>ans)
-                ans=i+1-left;
-            m[aa]=i+1;
+    ll n,aa,ans,k;
+    while(cin>>n,n){
+        multiset<int> m;
+        ans=0;
+        while(n--){
+            cin>>k;
+            while(k--){
+                cin>>aa;
+                m.insert(aa);
+            }
+            ans+=*m.rbegin()-*m.begin();
+            m.erase(m.begin()), m.erase(m.find(*m.rbegin()));
         }
         cout<<ans<<'\n';
     }
+    
     return 0;
 }

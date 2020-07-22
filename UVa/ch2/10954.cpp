@@ -13,22 +13,23 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t,n,aa,left,ans;
-    cin>>t;
-
-    while(t--){
-        cin>>n;
-        left=ans=0;
-        map<int,int> m;
-        for(int i=0;i<n;++i){
-            cin>>aa;
-            if(m[aa]>left)
-                left=m[aa];
-            if(i+1-left>ans)
-                ans=i+1-left;
-            m[aa]=i+1;
+    int n,a,b;
+    ll ans;
+    while(cin>>n,n){
+        priority_queue<int,vector<int>,greater<int>> pq;
+        ans=0;
+        while(n--){
+            cin>>a;
+            pq.push(a);
+        }
+        while(pq.size()>1){
+            a=pq.top(), pq.pop();
+            b=pq.top(), pq.pop();
+            ans+=a+b;
+            pq.push(a+b);
         }
         cout<<ans<<'\n';
     }
+    
     return 0;
 }

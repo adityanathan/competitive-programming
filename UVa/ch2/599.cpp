@@ -13,22 +13,17 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int t,n,aa,left,ans;
+    int t,edge;
+    string s;
     cin>>t;
 
     while(t--){
-        cin>>n;
-        left=ans=0;
-        map<int,int> m;
-        for(int i=0;i<n;++i){
-            cin>>aa;
-            if(m[aa]>left)
-                left=m[aa];
-            if(i+1-left>ans)
-                ans=i+1-left;
-            m[aa]=i+1;
-        }
-        cout<<ans<<'\n';
+        set<char> m;
+        edge = 0;
+        while(cin>>s,s[0]!='*')
+            edge++, m.insert(s[1]), m.insert(s[3]);
+        cin>>s;
+        cout<<"There are "<<m.size()-edge<<" tree(s) and "<<1+s.size()/2-m.size()<<" acorn(s).\n";
     }
     return 0;
 }
