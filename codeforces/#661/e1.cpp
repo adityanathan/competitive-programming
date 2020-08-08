@@ -13,29 +13,16 @@ typedef long long ll;
 
 vector<bool> vis;
 vector<vector<pair<int,int>>> adj;
-priority_queue<int,vector<int>,greater<int>> pq;
-int dfs(int u, int w){
+priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+pair<int,ll> dfs(int u, int w){
+    pair<int,ll> x;
     vis[u]=true;
-    int ans=1;
+    int ans=adj[u].size()==1, ans2=w*ans;
     for(auto v: adj[u])
         if(!vis[v.first])
-            ans+=dfs(v.first);
-    pq.push(ans*adj[])
-    return ans;
-}
-
-void bfs(int u){
-    queue<int> q;
-    q.push(u);
-    vis[u] = true;
-
-    while(!q.empty()){
-        int f = q.front();
-        q.pop();
-        for(auto v: adj[f])
-            if(!vis[v.first])
-                q.push(v.first), vis[v.first]=true;
-    }
+            x=dfs(v.first, v.second), ans+=x.first, ans2+=x.second;
+    pq.push({ans,ans*w});
+    return {ans,ans*w+ans2};
 }
 
 int main(){
