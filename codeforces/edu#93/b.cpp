@@ -22,8 +22,8 @@ int main(){
         n=s.length();
         vector<int> ones;
         forn(i,0,n)
-        	if(s[i]=='1')
-        	{	int count=0;
+        	if(s[i]=='1'){
+            	int count=0;
         		while(i<n && s[i]=='1')
         			count++, i++;
         		ones.push_back(count);
