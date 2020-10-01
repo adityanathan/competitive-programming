@@ -34,7 +34,6 @@ int main(){
         		i++;
         		if(s[i]%2==0)
         			f=true;
-        		i++;
         	}
         }
         
