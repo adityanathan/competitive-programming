@@ -32,7 +32,7 @@ map<ll,int> pf(ll n){
 
 vector<ll> divs(ll n){
 	vector<ll> v;
-	forn(i,1,sqrt(n))
+	forn(i,1,sqrt(n)+1)
 		if(n%i==0){
 			if(n/i!=i)
 				v.push_back(n/i);
@@ -77,6 +77,24 @@ void bfs(int u){
 	}
 }
 
+// vector<ll> dist;
+// vector<vector<pair<ll,int>>> adj;
+
+// int dijkstra(int u, int dest){
+//     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> q;
+//     dist[u]=0;
+//     q.push({dist[u],u});
+
+//     while(!q.empty()){
+//         int f = q.top().second;
+//         q.pop();
+//         for(auto v: adj[f])
+//             if(dist[v.first]>v.second+dist[f])
+//                 dist[v.first]=dist[f]+v.second, q.push({dist[v.first],v.first});
+//     }
+//     return dist[dest];
+// }
+
 int main(){
 	int t,n,m,x,y;
 	cin>>t;
@@ -85,6 +103,8 @@ int main(){
 		cin>>n>>m;
 		vis.assign(n,false);
 		adj.assign(n,vector<int>());
+		// dist.assign(n,INT_MAX);
+		// adj.assign(n,vector<pair<ll,int>>());
 
 		forn(i,0,m){
 			cin>>x>>y;
