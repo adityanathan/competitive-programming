@@ -3,7 +3,7 @@ using namespace std;
 #define forn(i,x,n) for(int i=x; i<n; ++i)
 typedef complex<double> cd;
 
-vector<int> order;
+vector<int> order,a,b;
 
 void fft(vector<cd> &a,bool invert){
     int n=a.size();
@@ -43,7 +43,7 @@ void precalc(int n,int L){
 vector<int> fft_mul(vector<int> a, vector<int> b) {
     vector<cd> fa(a.begin(), a.end()), fb(b.begin(), b.end());
     int n = 1, l=0;
-    while (n < a.size()+b.size()) 
+    while(n < a.size()+b.size()) 
         n <<= 1, l++;
     fa.resize(n);
     fb.resize(n);
@@ -63,15 +63,30 @@ vector<int> fft_mul(vector<int> a, vector<int> b) {
     return res;
 }
 
-int main(){
-    int n,m;
-    cin>>n>>m;
-    vector<int> a(n),b(m),c;
+long long n,d,x;
+
+long long getNextX(){
+    x=(x*37+10007)%1000000007;
+    return x;
+}
+
+void initAB(){
     forn(i,0,n)
-        cin>>a[i];
-    forn(i,0,m)
-        cin>>b[i];
-    c=fft_mul(a,b);
-    for(auto x:c)
-        cout<<x<<' ';
+        a[i]=i+1;
+    forn(i,0,n)
+        swap(a[i],a[getNextX()%(i+1)]);
+    
+    forn(i,0,n)
+        b[i]=i<d;
+    forn(i,0,n)
+        swap(b[i],b[getNextX()%(i+1)]);
+}
+
+int main(){
+    cin>>n>>d>>x;
+    a.resize(n,0);
+    b.resize(n,0);
+    initAB();
+    for(auto z:fft_mul(a,b))
+        cout<<z<<'\n';
 }
