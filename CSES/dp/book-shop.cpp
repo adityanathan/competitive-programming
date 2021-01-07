@@ -1,4 +1,4 @@
-#include<bits/stdc++.h> // dp
+#include<bits/stdc++.h> // dp, 0-1 knapsack
 using namespace std;
 typedef long long ll;
 
