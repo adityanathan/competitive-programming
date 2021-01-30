@@ -13,21 +13,18 @@ typedef long long ll;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n,m,x,y;
+    ll x,y,ans=0;
 
-    cin>>n>>m;
-    vector<vector<int>> adj(n);
-    ll ans=-1e10;
-    vector<ll> a(n), gold(n);
-    forn(i,0,n)
-    	cin>>a[i], gold[i]=1e10;
-    forn(i,0,m)
-    	cin>>x>>y, adj[x-1].push_back(y-1);
-    forn(i,0,n){
-    	ans=max(ans,a[i]-gold[i]);
-    	for(auto v:adj[i])
-    		gold[v]=min(gold[v],min(gold[i],a[i]));
+    cin>>x>>y;
+    
+    if(x>=y){
+        cout<<x-y;
+        return 0;
     }
+    while(log2(x)+1<=log2(y))
+        ans+=1+y%2, y/=2;
+    
+    
 
     cout<<ans<<'\n';
     
