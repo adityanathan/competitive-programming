@@ -41,7 +41,7 @@ int main(){
     	sa.insert(x);
     for(int i=0;i<n2;i++){
     	for(auto x:adjb[i])
-    		sa.erase(a[x]);
+    		sa.erase(sa.find(a[x]));
     	b2[i]=min(b2[i],*sa.begin()+b[i]);
     	for(auto x:adjb[i])
     		sa.insert(a[x]);
@@ -53,7 +53,7 @@ int main(){
     	sb.insert(x);
     for(int i=0;i<n3;i++){
     	for(auto x:adjc[i])
-    		sb.erase(b[x]);
+    		sb.erase(sb.find(b[x]));
     	c2[i]=min(c2[i],*sb.begin()+c[i]);
     	for(auto x:adjc[i])
     		sb.insert(b[x]);
@@ -65,7 +65,7 @@ int main(){
     	sc.insert(x);
     for(int i=0;i<n4;i++){
     	for(auto x:adjd[i])
-    		sc.erase(c[x]);
+    		sc.erase(sc.find(c[x]));
     	ans=min(ans,*sc.begin()+d[i]);
     	for(auto x:adjd[i])
     		sc.insert(c[x]);
