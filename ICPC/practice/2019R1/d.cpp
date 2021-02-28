@@ -18,6 +18,8 @@ int main(){
 
     while(t--){
         cin>>n;
+        vector<int> a(n);
+        forn(i,0,n)
         cout<<n<<'\n';
     }
     return 0;
